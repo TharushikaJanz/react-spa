@@ -2,7 +2,8 @@ import { Avatar, Paper } from '@mui/material'
 import React from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-function ProfileCard() {
+function ProfileCard(props) {
+    const { firstName, email } = props
     return (
         <Paper elevation={2} sx={{
             width: '190px', display: 'flex',
@@ -17,8 +18,8 @@ function ProfileCard() {
             >
                 <AccountCircleIcon sx={{ fontSize: 210, color: "#92D0E1" }} />
             </Avatar>
-            <div>first_name</div>
-            <div>Email</div>
+            <div>{firstName}</div>
+            <div>{email}</div>
         </Paper>
 
 
