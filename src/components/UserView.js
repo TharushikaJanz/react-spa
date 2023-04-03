@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProfileCard from './sub-components/ProfileCard'
 import { Box, Grid, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function UserView() {
     const [usersData, setUsersData] = useState([]);
@@ -16,12 +17,12 @@ function UserView() {
         <>
             <Box
                 sx={{
-                    backgroundColor: "#60ADC2",
+                    backgroundColor: "#2EADF1",
                     padding: 2,
                     display: 'flex',
                     justifyContent: 'center'
                 }}>
-                <Typography variant="h5" color="#fff"><b>Home Page</b></Typography>
+                <Typography variant="h5" color="#fff">Home Page</Typography>
             </Box>
             <Box
                 sx={{
@@ -33,11 +34,18 @@ function UserView() {
             </Box>
 
 
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Grid container spacing={0} style={{ width: '100%', maxWidth: '900px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', overflowY: 'auto'}}>
+                <Grid container spacing={5} style={{ width: '100%', maxWidth: '900px' }}>
                     {usersData.map((user, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index} style={{ padding: 2 }}>
-                            <ProfileCard userAvatar={user.avatar} firstName={user.first_name} email={user.email} />
+                        <Grid item xs={12} sm={6} md={4} key={index} style={{ padding: 50}}>
+                            <Link to={`/user/${user.id}`} key={user.id}>
+                                <ProfileCard
+                                    userAvatar={user.avatar}
+                                    firstName={user.first_name}
+                                    email={user.email}
+                                />
+                            </Link>
+
                         </Grid>
                     ))}
                 </Grid>

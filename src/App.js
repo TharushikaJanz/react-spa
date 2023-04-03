@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<UserView />} />
-        <Route path="/userInfo" element={<UserInformationView />} />
+        <Route path="/user/:id" element={<UserInformationView />} />
       </Routes>
     </Router>
   );
