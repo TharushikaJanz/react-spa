@@ -5,9 +5,9 @@ import UserView from "./components/UserView";
 function App() {
   return (
     <Router>
-      <Routes> 
-        <Route path="/" element={<UserView/>}/>
-        <Route path="/userInfo"element={<UserInformationView/>} />
+      <Routes>
+        <Route path="/" element={<UserView />} />
+        <Route path="/userInfo" element={<UserInformationView />} />
       </Routes>
     </Router>
   );
