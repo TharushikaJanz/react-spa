@@ -1,76 +1,97 @@
-import React, { useEffect, useState } from 'react'
-import ProfileCard from './sub-components/ProfileCard'
-import { Box, Grid, Paper, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
+import ProfileCard from "./sub-components/ProfileCard";
+
+/**
+ * UserView component displays a list of user profiles fetched from an external API.
+ * @returns {JSX.Element}
+ */
 function UserView() {
-    const [usersData, setUsersData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
-    useEffect(() => {
-        fetch('https://reqres.in/api/users?page=1')
-            .then(response => response.json())
-            .then(data => setUsersData(data.data))
-            .catch(error => console.log(error));
-    }, []);
+  useEffect(() => {
+    // Fetch users data from API and update state
+    fetch("https://reqres.in/api/users?page=1")
+      .then((response) => response.json())
+      .then((data) => setUserData(data.data))
+      .catch(() => null);
+  }, []);
 
-    return (
-        <>
-            <Paper
-                sx={{
-                    backgroundColor: "#2EADF1",
-                    padding: 2,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    borderRadius: 0,
-                    '&:hover': {
-                        backgroundColor: "#1F8ECF"
-                    }
-                }}
-            >
-                <Typography
-                    variant="button"
-                    color="#fff"
-                    sx={{
-                        textTransform: 'capitalize',
-                        fontSize: 28,
-                        fontWeight: 'bold'
-                    }}
-                >
-                    Home
-                </Typography>
-            </Paper>
-            <Box
-                sx={{
-                    padding: 2,
-                    display: 'flex',
-                    justifyContent: 'left',
-                    backgroundColor: '#F0F8FF',
-                }}>
-                <Typography variant="h5" color="#000">Users</Typography>
-            </Box>
+  // Header section
+  const Header = () => (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "#2EADF1",
+        color: "#fff",
+        height: "80px",
+        paddingLeft: "30px",
+        "&:hover": {
+          backgroundColor: "#1F8ECF",
+        },
+      }}
+    >
+      <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+        Home
+      </Typography>
+    </Box>
+  );
 
+  // Users title section
+  const Title = () => (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#F0F8FF",
+        height: "100px",
+        paddingLeft: "30px",
+      }}
+    >
+      <Typography variant="h5" sx={{ fontWeight: "600", letterSpacing: 0.6 }}>
+        Users
+      </Typography>
+    </Box>
+  );
 
-            <div style={{ display: 'flex', justifyContent: 'center', overflowY: 'auto', paddingTop: 25}}>
-                <Grid container spacing={5} style={{ width: '100%', maxWidth: '900px' }}>
-                    {usersData.map((user, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index} style={{ padding: 50 }}>
-                            <Link to={`/user/${user.id}`} key={user.id}>
-                                <ProfileCard
-                                    userAvatar={user.avatar}
-                                    firstName={user.first_name}
-                                    email={user.email}
-                                />
-                            </Link>
+  // User profiles section
+  const UserProfiles = () => (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        overflowY: "auto",
+        padding: "20px",
+      }}
+    >
+      <Grid container spacing={5} sx={{ maxWidth: "900px" }}>
+        {userData.map(({ id, avatar, first_name, email }) => (
+          <Grid item xs={12} sm={6} md={4} key={id}>
+            <Link to={`/user/${id}`}>
+              <ProfileCard
+                userAvatar={avatar}
+                firstName={first_name}
+                email={email}
+                key={id}
+              />
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
 
-                        </Grid>
-                    ))}
-                </Grid>
-            </div>
-
-
-        </>
-    )
+  return (
+    <>
+      <Header />
+      <Title />
+      <UserProfiles />
+    </>
+  );
 }
 
-export default UserView
+export default UserView;
