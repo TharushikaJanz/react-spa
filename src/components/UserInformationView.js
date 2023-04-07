@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, Typography } from '@mui/material';
+import { Avatar, Button, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -8,6 +8,10 @@ function UserInformationView() {
 
     const [userData, setUserData] = useState(null);
 
+    const handleClick = () => {
+        navigate("/")
+    }
+
     useEffect(() => {
         fetch(`https://reqres.in/api/users/${id}`)
             .then(response => response.json())
@@ -15,26 +19,29 @@ function UserInformationView() {
             .catch(error => console.log(error));
     }, [id]);
 
-    console.log('userInfo', userData)
     return (
-        <> <Box
-            sx={{
-                backgroundColor: "#2EADF1",
-                padding: 2,
-                display: 'flex',
-                justifyContent: 'left'
-            }}>
-            <Typography
-                variant="button"
-                color="#fff"
-                sx={{ cursor: 'pointer', textTransform: 'capitalize', fontSize: 25 }}
-                onClick={() => {
-                    navigate("/")
-                }}>
+        <>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClick}
+                sx={{
+                    backgroundColor: "#2EADF1",
+                    padding: "10px 20px",
+                    display: "flex",
+                    justifyContent: "left",
+                    textTransform: "capitalize",
+                    fontSize: 28,
+                    width: "100%",
+                    borderRadius: 0,
+                    '&:hover': {
+                        backgroundColor: "#1F8ECF"
+                    }
+                }}
+            >
                 Back
-            </Typography>
-        </Box>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 50, padding: 20 }}>
+            </Button>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 100, padding: 50, backgroundColor: '#C6E6FB' }}>
                 {userData && (
                     <Grid container spacing={0} style={{ width: '100%', maxWidth: '900px' }} direction="row"
                         justifyContent="center"
@@ -60,9 +67,9 @@ function UserInformationView() {
                                 borderRadius: 5,
                                 padding: 2
                             }}
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="center"
+                                direction="row"
+                                justifyContent="space-between"
+                                alignItems="center"
                             >
                                 <Grid item xs={5} sm={5} md={5}>
                                     <Typography mb={1} variant='body1'>First Name </Typography>

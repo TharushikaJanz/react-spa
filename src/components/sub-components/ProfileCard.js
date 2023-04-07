@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 function ProfileCard(props) {
     let navigate = useNavigate();
-    
-    const { firstName, email, userAvatar} = props
+
+    const { firstName, email, userAvatar } = props
 
     const handleClick = () => {
-        navigate('/')
+        navigate("/")
     }
 
     return (
@@ -20,6 +20,9 @@ function ProfileCard(props) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 padding: 1,
+                '&:hover': {
+                        backgroundColor: "#ccc"
+                    }
             }}
             onClick={handleClick}>
             <Avatar
@@ -34,7 +37,7 @@ function ProfileCard(props) {
                     border: '1px solid black',
                 }}
             >
-                <img src={userAvatar} alt={firstName} width={200} height={200}/>
+                <img src={userAvatar} alt={firstName} width={200} height={200} />
             </Avatar>
             <div>
                 <Box >

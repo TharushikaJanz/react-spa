@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProfileCard from './sub-components/ProfileCard'
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function UserView() {
@@ -15,29 +15,46 @@ function UserView() {
 
     return (
         <>
-            <Box
+            <Paper
                 sx={{
                     backgroundColor: "#2EADF1",
                     padding: 2,
                     display: 'flex',
-                    justifyContent: 'center'
-                }}>
-                <Typography variant="h5" color="#fff">Home Page</Typography>
-            </Box>
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    borderRadius: 0,
+                    '&:hover': {
+                        backgroundColor: "#1F8ECF"
+                    }
+                }}
+            >
+                <Typography
+                    variant="button"
+                    color="#fff"
+                    sx={{
+                        textTransform: 'capitalize',
+                        fontSize: 28,
+                        fontWeight: 'bold'
+                    }}
+                >
+                    Home
+                </Typography>
+            </Paper>
             <Box
                 sx={{
-                    padding: 5,
+                    padding: 2,
                     display: 'flex',
-                    justifyContent: 'left'
+                    justifyContent: 'left',
+                    backgroundColor: '#F0F8FF',
                 }}>
-                <Typography variant="h5" color="#000"><b>Users</b></Typography>
+                <Typography variant="h5" color="#000">Users</Typography>
             </Box>
 
 
-            <div style={{ display: 'flex', justifyContent: 'center', overflowY: 'auto'}}>
+            <div style={{ display: 'flex', justifyContent: 'center', overflowY: 'auto', paddingTop: 25}}>
                 <Grid container spacing={5} style={{ width: '100%', maxWidth: '900px' }}>
                     {usersData.map((user, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index} style={{ padding: 50}}>
+                        <Grid item xs={12} sm={6} md={4} key={index} style={{ padding: 50 }}>
                             <Link to={`/user/${user.id}`} key={user.id}>
                                 <ProfileCard
                                     userAvatar={user.avatar}
