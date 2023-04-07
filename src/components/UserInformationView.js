@@ -116,16 +116,18 @@ import {
             navigate("/");
           }}
           sx={{
-            backgroundColor: "#2EADF1",
+            backgroundColor: "#03045E",
             padding: "10px 20px",
             display: "flex",
             justifyContent: "left",
             textTransform: "capitalize",
             fontSize: 28,
+            fontWeight: 'bold',
             width: "100%",
+            height: "80px",
             borderRadius: 0,
             "&:hover": {
-              backgroundColor: "#1F8ECF",
+              backgroundColor: "#023E8A",
             },
           }}
         >
@@ -138,13 +140,13 @@ import {
             alignItems: "center",
             marginTop: 100,
             padding: 50,
-            backgroundColor: "#C6E6FB",
+            backgroundColor: "#CAF0F8",
           }}
         >
           {loading ? (
             <CircularProgress />
           ) : (
-            <GridItem gridItems={gridItems} avatarUrl={userData.avatar} />
+            <GridItem gridItems={gridItems} avatarUrl={userData?.avatar} />
           )}
         </div>
       </>

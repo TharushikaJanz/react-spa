@@ -25,12 +25,12 @@ function UserView() {
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: "#2EADF1",
+        backgroundColor: "#03045E",
         color: "#fff",
         height: "80px",
         paddingLeft: "30px",
         "&:hover": {
-          backgroundColor: "#1F8ECF",
+          backgroundColor: "#023E8A",
         },
       }}
     >
@@ -47,8 +47,8 @@ function UserView() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#F0F8FF",
-        height: "100px",
+        backgroundColor: "#ADE8F4",
+        height: "50px",
         paddingLeft: "30px",
       }}
     >
@@ -86,11 +86,11 @@ function UserView() {
   );
 
   return (
-    <>
+    <div style={{backgroundColor: '#F0F8FF'}}>
       <Header />
       <Title />
       <UserProfiles />
-    </>
+    </div>
   );
 }
 
