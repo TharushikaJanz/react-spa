@@ -8,7 +8,7 @@ function ProfileCard(props) {
     const { firstName, email, userAvatar} = props
 
     const handleClick = () => {
-        navigate('/userInfo')
+        navigate('/')
     }
 
     return (
